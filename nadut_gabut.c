@@ -206,7 +206,7 @@ int sumBranchLeft (BSTNode *root, BSTNode *branch){
 }
 
 bool __findSum (BSTNode *root, int query){
-    int sum = root->key;
+
     bool check = false;
 
     if(root->left != NULL && root->right != NULL){
@@ -250,17 +250,19 @@ bool __findSum (BSTNode *root, int query){
     
     //sum = root->key + root->left->key + root->right->key;
 
-    if(sum > query && root->left != NULL){
+    if(root->left != NULL){
         check = __findSum (root->left, query);
         if(check) 
             return true;
     }
 
-    if(sum < query && root->right != NULL){
+    if(root->right != NULL){
         check = __findSum (root->right, query);
         if(check) 
             return true;
     }
+    
+    return false;
 }
 
 bool findSum (BST *tree, int query){

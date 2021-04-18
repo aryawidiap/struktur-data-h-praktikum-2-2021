@@ -190,33 +190,32 @@ void addInorder(BSTNode *root, int *sum) {
     if (root) {
         addInorder(root->left, sum);
         *sum += root->key;
-        printf("%d\n", *sum);
+        //printf("%d\n", *sum);
         addInorder(root->right, sum);
     }
 }
 
-void find_path(BSTNode *node, int l, int r){
+void find_path(BSTNode *node, int l, int r, int *sum){
     BSTNode *p = node;
     if(l < p->key && r < p->key){
-        find_path(p->left, l, r);
+        find_path(p->left, l, r, sum);
     } else if(l > p->key && r > p->key){
-        find_path(p->right, l, r);
+        find_path(p->right, l, r, sum);
     } else {
-        int sum;
-        addInorder(p, &sum);
-        printf("Total %d\n", sum);
+        addInorder(p, sum);
+        printf("%d\n", *sum);
     }
 }
 
-void findPath(BST *bst, int l, int r){
-    find_path(bst->_root, l, r);
+void findPath(BST *bst, int l, int r, int *sum){
+    find_path(bst->_root, l, r, sum);
 }
  
 int main()
 {
     BST set;
     bst_init(&set);
-    int N, Q, L, R, A;
+    int N, Q, L, R, A, sum;
 
     scanf("%d %d", &N, &Q);
     for(int i=0; i<N; i++){
@@ -225,8 +224,9 @@ int main()
     }
     for(int i=0; i<Q; i++){
         scanf("%d %d", &L, &R);
+        sum=0;
         if(bst_find(&set, L) && bst_find(&set, R)){
-            findPath(&set, L, R);
+            findPath(&set, L, R, &sum);
         } else {
             printf("-1\n");
         }
