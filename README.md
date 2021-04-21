@@ -45,20 +45,20 @@ Setelah nilai-nilai tersebut dimasukkan dalam tree, maka akan terjadi operasi se
 
 Melakukan operasi `BFS` dengan bantuan queue `myQ`, dan menyimpan data dalam `nuQ`
 
-![pgs2](/img/si_pgs2.jpg)
+![pgs2](/img/si_pgs2.JPG)
 
 Membuat array sebesar `level`
 
-![pgs3](/img/si_pgs3.jpg)
+![pgs3](/img/si_pgs3.JPG)
 
 Mengisi index pertama dengan nilai `root`.
 
-![pgs4a](/img/si_pgs4a.jpg)
-![pgs4b](/img/si_pgs4b.jpg)
+![pgs4a](/img/si_pgs4a.JPG)
+![pgs4b](/img/si_pgs4b.JPG)
 
 Mengisi index kedua dengan nilai `root->left`, kemudian membandingkannya dengan anggota tree yang se`level`. Karena banyak `level` 3, dan level yang dibandingkan adalah `level` 2, diambil nilai yang terbesar (`750`).
 
-![pgs5a](/img/si_pgs5a.jpg)
+![pgs5a](/img/si_pgs5a.JPG)
 
 Karena `front` dari `queue` sekarang berbeda `level` dengan anggota array pada index sekarang, index selanjutnya diisi dengan nilai `front` tersebut
 
@@ -66,7 +66,7 @@ Karena `front` dari `queue` sekarang berbeda `level` dengan anggota array pada i
 
 Kemudian, anggota `queue` dibandingkan dengan anggota array pada index sekarang. Karena yang diminta pada `level` ini adalah nilai minimun, tidak terjadi perubahan pada array. 
 
-![pgs6](/img/si_pgs6.jpg)
+![pgs6](/img/si_pgs6.JPG)
 
 Keluarkan (`printf`) anggota `arr` dari index terbesar sampai 0.
 
@@ -102,43 +102,43 @@ Untuk mempermudah visualisasi solusi dari permasalahan Roni Suka Merah, digunaka
 7
 ```
 
-![rsm1](/img/si_rsm1.jpg)
+![rsm1](/img/si_rsm1.JPG)
 
 Membuat `tree` dari input-input yang diberikan.
 
-![rsm2](/img/si_rsm2.jpg)
+![rsm2](/img/si_rsm2.JPG)
 
 Memulai dari node `root`, yaitu 6. 
 
-![rsm3](/img/si_rsm3.jpg)
+![rsm3](/img/si_rsm3.JPG)
 
 Karena ada node disebelah kiri node 6, fungsi `inorder` untuk node kiri akan dijalankan terlebih dahulu.
 
-![rsm4](/img/si_rsm4.jpg)
+![rsm4](/img/si_rsm4.JPG)
 
 Tidak ada node di kiri node 1, sehingga keluarkan 1.
 
-![rsm5](/img/si_rsm5.jpg)
+![rsm5](/img/si_rsm5.JPG)
 
 `inorder` dilakukan pada node sebelah kanan dari node 1, yaitu node 3. Karena disebelah kiri dan kanan dari node 3 tidak ada, maka di `print` 3 saja.
 
-![rsm6](/img/si_rsm6.jpg)
+![rsm6](/img/si_rsm6.JPG)
 
 Karena operasi `inorder` pada node-node di sebelah kiri node 6 sudah selesai, print 6.
 
-![rsm6](/img/si_rsm7.jpg)
+![rsm6](/img/si_rsm7.JPG)
 
 Kemudian, lanjut ke node sebelah kanan dari node 6, yaitu node 8.
 
-![rsm6](/img/si_rsm8.jpg)
+![rsm6](/img/si_rsm8.JPG)
 
 Karena di kiri node 8 ada node 7, dan node 7 tidak memiliki `child`/`kiri`-`kanan`, print 7.
 
-![rsm6](/img/si_rsm9.jpg)
+![rsm6](/img/si_rsm9.JPG)
 
 Lalu, print 8.
 
-![rsm6](/img/si_rsm10.jpg)
+![rsm6](/img/si_rsm10.JPG)
 
 Lanjut ke kanan node 8,, yaitu node 12. Karena node 12 juga tidak ada kiri kanannya, print 12.
 
@@ -184,33 +184,33 @@ Untuk mempermudah visualisasi solusi dari permasalahan MALUR TERHUBUNG, digunaka
 4 9
 ```
 __Untuk input `1 4`__
-![mt1](/img/si_mt1.jpg)
+![mt1](/img/si_mt1.JPG)
 
 Dibuat tree berdasarkan input.
 
-![mt2](/img/si_mt2.jpg)
+![mt2](/img/si_mt2.JPG)
 
 Cari 1 dan 4 dahulu. Karena ditemukan, lanjut ke fungsi `find_path`
 
-![mt3](/img/si_mt3.jpg)
+![mt3](/img/si_mt3.JPG)
 
 Mulai pointer p dari `root`, yaitu node dengan nilai 8. Karena nilainya lebih besar dari kedua nilai yang dicari, pindahkan pointer ke node kirinya (node 3).
 
-![mt4](/img/si_mt4.jpg)
+![mt4](/img/si_mt4.JPG)
 
 Karena 3 lebih dari 1 dan kurang dari 4, node 3 adalah `root` yang sama yang terdekat, sehingga node 3 dikirim ke fungsi `addInorder`.
 
-![mt5](/img/si_mt5.jpg)
+![mt5](/img/si_mt5.JPG)
 
 Fungsi `addInorder` akan menjumlahkan semua anggota subtree dibawah node 3, disimpan pada variabel `*sum` (dalam `find_path` dibuat variabel `sum` dan dikirimkan alamatnya ke `addInorder`)
 
-![mt6](/img/si_mt6.jpg)
+![mt6](/img/si_mt6.JPG)
 
 Kemudian, keluarkan nilai `sum`, yaitu `21`. 
 
 __Untuk input `4 9`__
 
-![mt7](/img/si_mt7.jpg)
+![mt7](/img/si_mt7.JPG)
 
 9 tidak ditemukan dalam `tree`, sehingga keluarkan `-1`.
 
@@ -246,17 +246,17 @@ Semua variasi diperiksa dengan menggunakan fungsi-fungsi yang dipanggil pada fun
 Visualisasi dari fungsi-fungsi yang digunakan dalam `__findSum` adalah sebagai berikut:
 1. `sumParent`
 
-    ![bd_ng1](/img/bd_ng1.jpg)
+    ![bd_ng1](/img/bd_ng1.JPG)
 
 2. `sumBranchRight`
 
-    ![bd_ng2a](/img/bd_ng2a.jpg)
-    ![bd_ng2b](/img/bd_ng2b.jpg)
+    ![bd_ng2a](/img/bd_ng2a.JPG)
+    ![bd_ng2b](/img/bd_ng2b.JPG)
 
 3. `sumBranchLeft`
 
-    ![bd_ng3a](/img/bd_ng3a.jpg)
-    ![bd_ng3b](/img/bd_ng3b.jpg)
+    ![bd_ng3a](/img/bd_ng3a.JPG)
+    ![bd_ng3b](/img/bd_ng3b.JPG)
 
 Proses yang terjadi dalam fungsi `__findSum`:
 
@@ -282,25 +282,25 @@ Untuk mempermudah visualisasi solusi dari permasalahan Nadut Gabut, digunakan sa
 266
 ```
 
-![ng1a](/img/si_ng1a.jpg)
+![ng1a](/img/si_ng1a.JPG)
 
 Memeriksa `sumParent`. Karena belum `==query`, lanjut ke operasi selanjutnya.
 
-![ng1b](/img/si_ng1b.jpg)
+![ng1b](/img/si_ng1b.JPG)
 
 Memeriksa `sumBranchRight` dari subnode `right`. Karena belum `==query`, lanjut ke operasi selanjutnya.
 
-![ng1c](/img/si_ng1c.jpg)
-![ng1d](/img/si_ng1d.jpg)
-![ng1e](/img/si_ng1e.jpg)
+![ng1c](/img/si_ng1c.JPG)
+![ng1d](/img/si_ng1d.JPG)
+![ng1e](/img/si_ng1e.JPG)
 
 Begitupula dengan `sumBranchLeft` dari subnode right, `sumBranchRight` dari subnode `left`, dan `sumBranchLeft` dari subnode `left`, karena belum ==query, lanjut ke operasi selanjutnya.
 
-![ng2](/img/si_ng2.jpg)
+![ng2](/img/si_ng2.JPG)
 
 Memeriksa `sumParent` dari node 66. Karena belum `==query`, dan tidak ada node "cucu", maka lanjut ke node sebelah kanan dari `root`.
 
-![ng3](/img/si_ng3.jpg)
+![ng3](/img/si_ng3.JPG)
 
 Memeriksa `sumParent` dari node 91. Karena `==query`, `check=true`, dan pada akhirnya nilai yang dikembalikan adalah `true`. Oleh karena demikian, keluarkan "Penjumlahan angka di tree yang menghasilkan 266 ditemukan".
 
@@ -347,29 +347,29 @@ Untuk mempermudah visualisasi solusi dari permasalahan Genjil Ganap V2, digunaka
 10
 ```
 
-![ggv2_1](/img/si_ggv2_1.jpg)
+![ggv2_1](/img/si_ggv2_1.JPG)
 
 Inisialisasi tree dan definisi array berukuran `7`.
 
-![ggv2_2a](/img/si_ggv2_2a.jpg)
-![ggv2_2b](/img/si_ggv2_2b.jpg)
+![ggv2_2a](/img/si_ggv2_2a.JPG)
+![ggv2_2b](/img/si_ggv2_2b.JPG)
 
 Input 6 genap, masuk ke tree dan array, dan `size++`. Sama juga dengan input 4.
 
-![ggv2_3](/img/si_ggv2_3.jpg)
+![ggv2_3](/img/si_ggv2_3.JPG)
 
 Input 5 ganjil, nilai 4 di`remove` dari tree dan array. `size--`
 
-![ggv2_4](/img/si_ggv2_4.jpg)
+![ggv2_4](/img/si_ggv2_4.JPG)
 
 Input 8 genap, masuk ke tree dan array, dan `size++`.
 
-![ggv2_5](/img/si_ggv2_5.jpg)
+![ggv2_5](/img/si_ggv2_5.JPG)
 
 Input 7 ganjil, nilai 8 di`remove` dari tree dan array. `size--`
 
-![ggv2_6a](/img/si_ggv2_6a.jpg)
-![ggv2_6b](/img/si_ggv2_6b.jpg)
+![ggv2_6a](/img/si_ggv2_6a.JPG)
+![ggv2_6b](/img/si_ggv2_6b.JPG)
 
 Input 12 genap, masuk ke tree dan array, dan `size++`
 Input 10 genap, masuk ke tree dan array, dan `size++`
