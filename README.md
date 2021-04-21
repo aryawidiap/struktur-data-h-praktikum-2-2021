@@ -157,7 +157,22 @@ AC saat revisi
 ### Penjelasan Soal
 Diberikan beberapa bilangan yang dibentuk menjadi `Binary Search Tree`. Lalu, diberikan 2 bilangan. Kemudian, diminta mengeluarkan hasil penjumlahan dari subtree yang menghubungkan kedua bilangan tersebut.
 ### Penjelasan Solusi
+Pertama, diinisialisasi sebuah `tree` bernama `set`. Lalu, didefinisikan variabel:
+- `N` : untuk menyimpan banyak anggota `tree`.
+- `Q` : untuk menyimpan banyak pasangan bilangan yang akan dicari penjumlahan subtree yang menghubungkan keduanya.
+- `L` : untuk menyimpan bilangan pertama dari pasangan tersebut. 
+- `R` : untuk menyimpan bilangan kedua dari pasangan tersebut.
+- `A` : untuk menyimpan sementara nilai yang ingin dimasukkan ke dalam tree.
+- `sum` : untuk menyimpan penjumlahan dari subtree.
 
+Lalu, program meminta input yang akan disimpan ke variabel `N` dan `Q`. Kemudian, dijalankan loop `for` sebanyak `N` kali. Dengan bantuan variabel `A`, input dimasukkan ke dalam `tree` `set`. Selesai loop tersebut, program menjalankan lagi loop `for` sebanyak `Q` kali. Di dalam loop, program meminta input pasangan bilangan yang akan dicari penghubungnya, disimpan dalam `L` dan `R`. `sum` diinisialisasi dengan `0`. Kemudian, dilakukan `if-else`:
+- Jika nilai `L` dan `R` ada di dalam `tree`, kirimkan alamat `set` `L`, `R`, dan alamat `sum` ke fungsi `findPath`. `findPath` kemudian mengirim `root` dari `set`, `L`, `R`, dan alamat `sum`. Di dalam fungsi `find_path` dilakukan beberapa evaluasi dalam `if-else`:
+    - Jika nilai `L` dan `R` sama-sama lebih kecil dari node, panggil kembali fungsi `find_path`, tapi node diganti dengan `node->left`.
+    - Jika sama-sama lebih besar dari nilai node, panggil kembali fungsi `find_path`, tapi node diganti dengan `node->left`.
+    -Selain kondisi yang telah disebutkan, berarti node adalah __akar yang sama yang terdekat__ dari `L` dan `R`, sehingga lakukan fungsi `addInorder` dengan parameter node tersebut dan `sum`.
+    Fungsi `addInorder` bekerja dengan menambahkan nilai dari node paling kiri sampai node paling kanan.
+    Setelah fungsi tersebut dilaksanakan, print nilai `sum`.
+- Jika tidak, keluarkan `-1`.
 
 ### Visualisasi Solusi
 Untuk mempermudah visualisasi solusi dari permasalahan MALUR TERHUBUNG, digunakan sample input berikut:
@@ -175,7 +190,7 @@ Dibuat tree berdasarkan input.
 
 ![mt2](/img/si_mt2.jpg)
 
-Cari 1 dan 4 dahulu. Jika ditemukan, lanjut ke fungsi `find_path`
+Cari 1 dan 4 dahulu. Karena ditemukan, lanjut ke fungsi `find_path`
 
 ![mt3](/img/si_mt3.jpg)
 
@@ -213,13 +228,50 @@ AC saat revisi
 ### Penjelasan Soal
 Diberikan beberapa bilangan yang disusun menjadi Binary Search Tree. Lalu, diberikan bilangan. Diminta untuk mencari apakah bilangan tersebut dapat dihasilkan dari penjumlahan 3 anggota tree yang bertetangga, dan mengeluarkan output seperti yang dicontohkan dalam soal.
 ### Penjelasan Solusi
-Pertama, program menerima banyak testcase yang disimpan dalam variabel `T`. Lalu, dilakukan loop sebanyak `T`. Di dalam `loop`, program menerima banyak blok angka yang akan disusun dan disimpan dalam variabel `P`. Lalu, program akan menerima angka-angka pada blok yang disimpan dalam array `Q`. Kemudian, nilai-nilai dari index dari array `Q` akan dievaluasi dengan bantuan stack `myStack`di dalam loop sebanyak P :
-1. Jika nilai `Q[index] <= stack_top(&myStack)`(kurang dari elemen teratas stack) atau `stack_isEmpty(&myStack)` (stack kosong) maka `Q[index]` akan dimasukkan ke dalam stack (`stack_push`).
-2. Jika nilai `Q[index]` lebih dari elemen teratas (`Q[j]>stack_top(&myStack)`), maka elemen teratas akan dikeluarkan 
-`stack_pop(&myStack)`. Hal ini akan dilakukan terus menerus sampai elemen teratas lebih dari nilai `Q[index]` atau stack kosong (`myStack._top==NULL`).
-Apabila sudah dilakukan loop sebanyak `P`, elemen dari stack akan disimpan ke dalam array baru `arr`. Elemen dimasukkan secara terbalik, dengan cara mengassign index dari `size-1` sampai `0` dan melalukan pop pada stack.
-Terakhir, keluarkan `Susunan blok yang disusun Nadut dan Cayo adalah : ` diikuti oleh nilai anggota `arr` berurutan dari `index 0` sampai terakhir.
-Proses diulang sebanyak `T`.
+Pertama, diinisialisasi sebuah tree bernama `set`, dan didefinisikan variabel `P` dan `N`. Lalu, untuk mengetahui banyak anggota tree, diambil input yang disimpan dalam variabel `P`. Setelahnya dilakukan loop `for` sebanyak `P` kali yang berfungsi untuk memasukkan nilai ke tree dengan bantuan variabel `Q`. Setelah loop selesai, diambil input bilangan query yang disimpan dalam `N`. Lalu, buat variabel `bool` `check` yang menerima kembalian dari fungsi `findSum` dengan parameter `&set` dan `N`. Jika `check` bernilai `true`, keluarkan `Penjumlahan angka di tree yang menghasilkan N ditemukan`. Jika tidak, keluarkan `Tidak ditemukan penjumlahan angka di tree yang menghasilkan N`.
+
+#### __Penjelasan fungsi `findSum`__
+
+Fungsi `findSum` akan mengirimkan parameter yang diterimanya ke `__findSum`, **kecuali** parameter tree diganti dengan root dari tree.
+
+Kombinasi dari 3 angka pada `tree` ada 5 kemungkinan:
+1. `root+left+right`
+2. `root+left+left's left`
+3. `root+left+left's right`
+4. `root+right+right's left`
+5. `root+right+right's right`
+
+Semua variasi diperiksa dengan menggunakan fungsi-fungsi yang dipanggil pada fungsi `__findSum`.
+
+Visualisasi dari fungsi-fungsi yang digunakan dalam `__findSum` adalah sebagai berikut:
+1. `sumParent`
+
+    ![bd_ng1](/img/bd_ng1.jpg)
+
+2. `sumBranchRight`
+
+    ![bd_ng2a](/img/bd_ng2a.jpg)
+    ![bd_ng2b](/img/bd_ng2b.jpg)
+
+3. `sumBranchLeft`
+
+    ![bd_ng3a](/img/bd_ng3a.jpg)
+    ![bd_ng3b](/img/bd_ng3b.jpg)
+
+Proses yang terjadi dalam fungsi `__findSum`:
+
+Pertama, sebuah variabel `bool` `check` diinisialisasi dengan nilai `false`. Variabel ini berfungsi untuk menyimpan kembalian dari fungsi `__findSum` yang dilakukan pada node sebelah kiri dan kanan dari node sekarang (`root`).
+Lalu, jika `root->left` dan `root->right` ada isinya, lakukan fungsi `sumParent`. Jika nilainya sama dengan `query`, kembalikan `true`. Jika tidak, lanjut kode di bawahnya
+
+Jika `root->right` ada nilainya,
+- Jika `root->right->right` ada nilainya, lakukan fungsi `sumBranchRight` pada node `root->right`. Jika nilai kembaliannya sama dengan `query`, kembalikan nilai `true`
+- Jika `root->right->left` ada nilainya, lakukan operasi yang sejenis dengan operasi di atas.
+
+Jika belum juga ada yang mengembalikan nilai `true`, maka lakukan operasi yang sejenis dengan operasi `root->right` pada `root->left`.
+
+Jika masih belum ditemukan nilai `true`, lanjutkan ke kode di line selanjutnya.
+
+Jika `root->left` ada, buat `check` = nilai kembalian dari fungsi `__findSum` yang dimulai dari sub-node kiri dari node yang sekarang. Jika `check` nilainya `true`, langsung return `true`. Jika tidak, lakukan operasi yang sejenis pada `root->right`. Jika `check` tidak juga bernilai `true`, kembalikan nilai `false`.
 
 ### Visualisasi Solusi
 Untuk mempermudah visualisasi solusi dari permasalahan Nadut Gabut, digunakan sample input berikut:
@@ -230,31 +282,27 @@ Untuk mempermudah visualisasi solusi dari permasalahan Nadut Gabut, digunakan sa
 266
 ```
 
-![ng1](/img/si_ng1.jpg)
+![ng1a](/img/si_ng1a.jpg)
 
-Stack kosong, `push` 5 ke `myStack`
+Memeriksa `sumParent`. Karena belum `==query`, lanjut ke operasi selanjutnya.
+
+![ng1b](/img/si_ng1b.jpg)
+
+Memeriksa `sumBranchRight` dari subnode `right`. Karena belum `==query`, lanjut ke operasi selanjutnya.
+
+![ng1c](/img/si_ng1c.jpg)
+![ng1d](/img/si_ng1d.jpg)
+![ng1e](/img/si_ng1e.jpg)
+
+Begitupula dengan `sumBranchLeft` dari subnode right, `sumBranchRight` dari subnode `left`, dan `sumBranchLeft` dari subnode `left`, karena belum ==query, lanjut ke operasi selanjutnya.
 
 ![ng2](/img/si_ng2.jpg)
 
-4 kurang dari `stack_top`, `push` 4 ke `myStack`
+Memeriksa `sumParent` dari node 66. Karena belum `==query`, dan tidak ada node "cucu", maka lanjut ke node sebelah kanan dari `root`.
 
-![ng3a](/img/si_ng3a.jpg)
-![ng3b](/img/si_ng3b.jpg)
+![ng3](/img/si_ng3.jpg)
 
-7 lebih dari `stack_top`, `pop` terus `myStack` hingga `stack_top` >= 7 atau `stack_isEmpty`
-
-![ng4](/img/si_ng4.jpg)
-
-2 kurang dari `stack_top`, `push` 2 ke `myStack`
-
-![ng5](/img/si_ng5.jpg)
-
-1 kurang dari `stack_top`, `push` 1 ke `myStack`
-
-![ng6](/img/si_ng6.jpg)
-
-Salin nilai elemen stack ke array `arr` secara terbalik.
-Kemudian, print anggota arr
+Memeriksa `sumParent` dari node 91. Karena `==query`, `check=true`, dan pada akhirnya nilai yang dikembalikan adalah `true`. Oleh karena demikian, keluarkan "Penjumlahan angka di tree yang menghasilkan 266 ditemukan".
 
 Output:
 ```
@@ -272,6 +320,19 @@ Diminta untuk membuat tree yang hanya berisi bilangan genap dari input yang dibe
 Masalah Genjil Ganap V2 diselesaikan dengan struktur data `binary search tree` dan `array`. BST digunakan sebagai ADT utama untuk menyimpan data, sedangkan array digunakan untuk mengingat urutan masuknya data sehingga dapat digunakan sebagai referensi untuk menghapus bilangan genap yang terakhir dimasukkan.
 Jika tree kosong (`bst_isEmpty(&set)`), dikeluarkan `Tree Kosong!`.Jika tidak, dikeluarkan anggota tree dengan traversal `inorder`.
 
+__Implementasi:__
+
+Diinisialisasi sebuah `binary search tree` bernama `set`, variabel `N`. Program menerima input yang disimpan dalam variabel `N`, yaitu banyak bilangan yang akan dicoba untuk dimasukkan ke `tree`. Lalu, dibuat array integer sebesar `N` yang bernama `N` dan integer `size` (diinisialisasi bernilai `0`). `size` berfungsi untuk mempermudah mengetahui banyak anggota tree sehingga untuk menginput dan mengakses data pada `arr` lebih mudah.
+Setelah itu, dilakukan loop `for` sebanyak `N` kali. Isi dari loop adalah:
+
+Pertama, input bilangan dan disimpan dalam variabel `num`.
+
+Kedua, periksa apakah input genap (`if(num%2==0)`).
+- Jika iya, nilai input dimasukkan ke `set`, simpan nilainya di `arr[size]`, size di*increment*.
+- Jika tidak, jika `set` tidak kosong, hapus (`remove`) nilai yang terdapat pada `array[size-1]` dari `set`. Lalu, `size` di*decrement*.
+
+Saat loop sudah selesai dijalankan, diperiksa apakah tree kosong atau tidak. Jika kosong, dikeluarkan `Tree Kosong!`. Jika tidak, keluarkan anggota `tree` secara traversal `inorder`.
+
 ### Visualisasi Solusi
 Untuk mempermudah visualisasi solusi dari permasalahan Genjil Ganap V2, digunakan sample input berikut:
 
@@ -288,29 +349,30 @@ Untuk mempermudah visualisasi solusi dari permasalahan Genjil Ganap V2, digunaka
 
 ![ggv2_1](/img/si_ggv2_1.jpg)
 
-txt
+Inisialisasi tree dan definisi array berukuran `7`.
 
 ![ggv2_2a](/img/si_ggv2_2a.jpg)
 ![ggv2_2b](/img/si_ggv2_2b.jpg)
 
-txt
+Input 6 genap, masuk ke tree dan array, dan `size++`. Sama juga dengan input 4.
 
 ![ggv2_3](/img/si_ggv2_3.jpg)
 
-txt
+Input 5 ganjil, nilai 4 di`remove` dari tree dan array. `size--`
 
 ![ggv2_4](/img/si_ggv2_4.jpg)
 
-txt
+Input 8 genap, masuk ke tree dan array, dan `size++`.
 
 ![ggv2_5](/img/si_ggv2_5.jpg)
 
-txt
+Input 7 ganjil, nilai 8 di`remove` dari tree dan array. `size--`
 
 ![ggv2_6a](/img/si_ggv2_6a.jpg)
 ![ggv2_6b](/img/si_ggv2_6b.jpg)
 
-txt
+Input 12 genap, masuk ke tree dan array, dan `size++`
+Input 10 genap, masuk ke tree dan array, dan `size++`
 
 ![ggv2_7](/img/si_ggv2_7.gif)
 
