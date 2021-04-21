@@ -64,7 +64,7 @@ Karena `front` dari `queue` sekarang berbeda `level` dengan anggota array pada i
 
 ![pgs5b](/img/si_pgs5b.gif)
 
-Kemudian, anggota `queue` dibandingkan dengan anggota array pada index sekarang. Karena yang diminta pada `level` ini adalah nilai minimun, tidak terjadi perubahan pada array. 
+Kemudian, anggota `queue` dibandingkan dengan anggota array pada index sekarang. Karena yang diminta pada `level` ini adalah nilai minimum, tidak terjadi perubahan pada array. 
 
 ![pgs6](/img/si_pgs6.JPG)
 
@@ -112,7 +112,7 @@ Memulai dari node `root`, yaitu 6.
 
 ![rsm3](/img/si_rsm3.JPG)
 
-Karena ada node disebelah kiri node 6, fungsi `inorder` untuk node kiri akan dijalankan terlebih dahulu.
+Karena ada node di sebelah kiri node 6, fungsi `inorder` untuk node kiri akan dijalankan terlebih dahulu.
 
 ![rsm4](/img/si_rsm4.JPG)
 
@@ -120,7 +120,7 @@ Tidak ada node di kiri node 1, sehingga keluarkan 1.
 
 ![rsm5](/img/si_rsm5.JPG)
 
-`inorder` dilakukan pada node sebelah kanan dari node 1, yaitu node 3. Karena disebelah kiri dan kanan dari node 3 tidak ada, maka di `print` 3 saja.
+`inorder` dilakukan pada node sebelah kanan dari node 1, yaitu node 3. Karena di sebelah kiri dan kanan dari node 3 tidak ada, maka di `print` 3 saja.
 
 ![rsm6](/img/si_rsm6.JPG)
 
@@ -294,7 +294,7 @@ Memeriksa `sumBranchRight` dari subnode `right`. Karena belum `==query`, lanjut 
 ![ng1d](/img/si_ng1d.JPG)
 ![ng1e](/img/si_ng1e.JPG)
 
-Begitupula dengan `sumBranchLeft` dari subnode right, `sumBranchRight` dari subnode `left`, dan `sumBranchLeft` dari subnode `left`, karena belum ==query, lanjut ke operasi selanjutnya.
+Begitu pula dengan `sumBranchLeft` dari subnode right, `sumBranchRight` dari subnode `left`, dan `sumBranchLeft` dari subnode `left`, karena belum ==query, lanjut ke operasi selanjutnya.
 
 ![ng2](/img/si_ng2.JPG)
 
@@ -318,7 +318,7 @@ AC saat revisi
 Diminta untuk membuat tree yang hanya berisi bilangan genap dari input yang diberikan, dengan ketentuan jika ada input bilangan ganjil, bilangan genap yang diinput sebelumnya akan dihapus dari tree.
 ### Penjelasan Solusi
 Masalah Genjil Ganap V2 diselesaikan dengan struktur data `binary search tree` dan `array`. BST digunakan sebagai ADT utama untuk menyimpan data, sedangkan array digunakan untuk mengingat urutan masuknya data sehingga dapat digunakan sebagai referensi untuk menghapus bilangan genap yang terakhir dimasukkan.
-Jika tree kosong (`bst_isEmpty(&set)`), dikeluarkan `Tree Kosong!`.Jika tidak, dikeluarkan anggota tree dengan traversal `inorder`.
+Jika tree kosong (`bst_isEmpty(&set)`), dikeluarkan `Tree Kosong!`. Jika tidak, dikeluarkan anggota tree dengan traversal `inorder`.
 
 __Implementasi:__
 
