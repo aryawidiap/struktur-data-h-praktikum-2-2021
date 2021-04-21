@@ -53,7 +53,7 @@ Membuat array sebesar `level`
 
 Mengisi index pertama dengan nilai `root`.
 
-![pgs4a](/img/si_pgs4a.JPG)
+![pgs4a](/img/si_pgs4a.jpg)
 ![pgs4b](/img/si_pgs4b.JPG)
 
 Mengisi index kedua dengan nilai `root->left`, kemudian membandingkannya dengan anggota tree yang se`level`. Karena banyak `level` 3, dan level yang dibandingkan adalah `level` 2, diambil nilai yang terbesar (`750`).
